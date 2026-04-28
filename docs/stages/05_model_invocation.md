@@ -27,7 +27,6 @@ Provider setup, model aliases, and serving commands are documented in [Model Pro
 - `src/llm/client.py`
 - `src/graph/model_call.py`
 - `scripts/test_openai_connection.py`
-- `scripts/vllm/`
 - `tests/test_model_client.py`
 - `tests/test_model_call_graph.py`
 

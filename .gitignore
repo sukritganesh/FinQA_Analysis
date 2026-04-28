@@ -48,6 +48,7 @@ reports/retrieval/
 reports/prompts/
 reports/predictions/
 reports/evaluation/
+vllm/sandbox/
 
 # Logs
 *.log

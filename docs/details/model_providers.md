@@ -24,7 +24,7 @@ Both providers use the same `ModelConfig` and return the same `ModelResponse` sh
 - `src/llm/client.py`
 - `src/graph/model_call.py`
 - `scripts/test_openai_connection.py`
-- `scripts/vllm/`
+- `vllm/`
 - `configs/runs/train_100_qwen14b_awq.yaml`
 - `configs/runs/train_100_openai.yaml`
 

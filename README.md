@@ -80,7 +80,7 @@ vllm serve Qwen/Qwen2.5-14B-Instruct-AWQ --max-model-len 4096
 Then run a batch config:
 
 ```bash
-.venv/bin/python scripts/run_pipeline.py configs/runs/dev_200_template.yaml
+.venv/bin/python scripts/run_pipeline.py configs/runs/dev_200_sample.yaml
 ```
 
 Outputs are written under `reports/test_results/`.

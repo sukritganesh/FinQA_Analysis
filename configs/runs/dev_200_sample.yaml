@@ -21,9 +21,9 @@ model:
   timeout_seconds: 60.0
 
 outputs:
-  run_name: dev_200
-  prediction_path: reports/test_results/dev_200_tests/dev_200/predictions.json
-  evaluation_dir: reports/test_results/dev_200_tests/dev_200
+  run_name: dev_200_sample
+  prediction_path: reports/test_results/dev_200_tests/dev_200_sample/predictions.json
+  evaluation_dir: reports/test_results/dev_200_tests/dev_200_sample
   evaluate: true
 
 runtime:

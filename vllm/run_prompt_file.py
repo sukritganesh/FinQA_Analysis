@@ -11,7 +11,7 @@ import urllib.request
 from pathlib import Path
 
 DEFAULT_MODEL = "Qwen/Qwen2.5-3B-Instruct"
-DEFAULT_PROMPT_FILE = "reports/prompts/test_example_0_prompt.txt"
+DEFAULT_PROMPT_FILE = "vllm/test_prompt.txt"
 
 
 def parse_args() -> argparse.Namespace:

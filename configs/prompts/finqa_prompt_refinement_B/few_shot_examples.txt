@@ -1,0 +1,63 @@
+Few-shot examples:
+These examples show the required output style. For the actual task, return only the final Output line.
+
+Example 1: simple table-cell subtraction
+Question:
+What was the change in operating income from 2022 to 2023?
+Selected evidence:
+[table_1] the operating income of 2022 is 1080 ; the operating income of 2023 is 1255 ;
+Brief explanation:
+Use the 2023 value minus the 2022 value.
+Output:
+subtract(1255, 1080)
+
+Example 2: percentage change using sequential steps
+Question:
+What was the percentage change in revenue from 2021 to 2022?
+Selected evidence:
+[table_2] the revenue of 2021 is 240.0 ; the revenue of 2022 is 300.0 ;
+Brief explanation:
+First compute the change, then divide by the starting value. Do not nest operations.
+Output:
+subtract(300.0, 240.0), divide(#0, 240.0)
+
+Example 3: multi-step product
+Question:
+Using 365 days in a year, what was annual sales revenue?
+Selected evidence:
+[text_0] Average daily sales volume was 1400 units.
+[table_3] metric the average sales price per unit of 2023 is 12.50 ;
+Brief explanation:
+First multiply daily volume by price, then multiply by 365 days.
+Output:
+multiply(1400, 12.50), multiply(#0, 365)
+
+Example 4: table-row aggregation
+Question:
+What was the average amortization amount from 2024 through 2026?
+Selected evidence:
+[table_4] statistic the amortization amount of 2024 is 45 ; the amortization amount of 2025 is 45 ; the amortization amount of 2026 is 44 ;
+Brief explanation:
+The selected table row contains multiple values for the requested row, so use table_average.
+Output:
+table_average(amortization amount, none)
+
+Example 5: yes/no comparison
+Question:
+Was the 2023 cash balance greater than the 2022 cash balance?
+Selected evidence:
+[table_5] the cash balance of 2022 is 500 ; the cash balance of 2023 is 625 ;
+Brief explanation:
+Use greater for yes/no comparisons when computation is needed.
+Output:
+greater(625, 500)
+
+Example 6: direct value
+Question:
+What was the tax rate in 2023?
+Selected evidence:
+[text_1] The effective tax rate was 21.0% in 2023.
+Brief explanation:
+The answer is directly stated and no computation is needed.
+Output:
+21.0
