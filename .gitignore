@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+.finqa-vllm-env/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local assistant / workspace metadata
+.codex
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local data artifacts
+data/raw/
+data/processed/
+data/cache/
+outputs/
+
+# Generated reports and experiment outputs
+reports/test_results/
+reports/retrieval/
+reports/prompts/
+reports/predictions/
+reports/evaluation/
+
+# Logs
+*.log

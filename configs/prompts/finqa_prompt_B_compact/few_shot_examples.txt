@@ -1,0 +1,20 @@
+Examples for k-shot prompting:
+
+Question: What was the percentage change in revenue?
+Evidence: [table_1] year the revenue of 2021 is 240 ; the revenue of 2022 is 300 ;
+Output: subtract(300, 240), divide(#0, 240)
+
+Question: Was 2023 cash greater than 2022 cash?
+Evidence: [table_2] year the cash of 2022 is 500 ; the cash of 2023 is 625 ;
+Output: greater(625, 500)
+
+Question: What was the average amortization amount?
+Evidence: [table_3] year the amortization amount of 2024 is 45 ; the amortization amount of 2025 is 45 ; the amortization amount of 2026 is 44 ;
+Output: table_average(amortization amount, none)
+
+Question: Using 365 days in a year, what was annual sales revenue?
+Evidence:
+[text_0] Average daily sales volume was 1400 units.
+[table_3] metric the average sales price per unit of 2023 is 12.50 ;
+Output:
+multiply(1400, 12.50), multiply(#0, 365)

@@ -1,0 +1,3 @@
+Solve the FinQA question using only the selected evidence.
+Return exactly one line: a direct answer, or a linear executable program.
+Do not explain.

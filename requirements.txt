@@ -1,0 +1,16 @@
+# Core data and config
+PyYAML>=6.0.1
+pydantic>=2.8,<3.0
+rank-bm25>=0.2.2
+
+# LLM application building blocks
+langchain-core>=0.3,<0.4
+langgraph>=0.2,<0.3
+
+# Testing
+pytest>=8.2,<9.0
+
+# Optional local serving on Linux / WSL.
+# vLLM is intentionally not pinned into the default starter install because
+# setup can be environment-specific, especially on native Windows.
+# vllm>=0.6

@@ -1,0 +1,30 @@
+data:
+  input_path: data/processed/train_100.json
+  offset: 0
+  limit: 100
+
+retrieval:
+  strategy: bm25
+  mode: by_source
+  top_k: 5
+  top_k_text: 3
+  top_k_table: 3
+
+prompt:
+  prompt_dir: configs/prompts/finqa_prompt_B_compact
+
+model:
+  model: qwen14b-awq
+  base_url: http://127.0.0.1:8000/v1
+  max_tokens: 256
+  temperature: 0.0
+  timeout_seconds: 60.0
+
+outputs:
+  run_name: train_100_qwen14b_awq
+  prediction_path: reports/test_results/train_100_qwen14b_awq/predictions.json
+  evaluation_dir: reports/test_results/train_100_qwen14b_awq
+  evaluate: true
+
+runtime:
+  continue_on_error: true

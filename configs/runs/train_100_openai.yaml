@@ -1,0 +1,35 @@
+data:
+  input_path: data/processed/train_100.json
+  offset: 0
+  limit: 100
+
+retrieval:
+  strategy: bm25
+  mode: by_source
+  top_k: 5
+  top_k_text: 3
+  top_k_table: 3
+
+prompt:
+  prompt_dir: configs/prompts/finqa_prompt_B_compact
+
+model:
+  provider: openai
+  model: gpt-4.1-mini
+  base_url: https://api.openai.com/v1
+  # api_key: "<Insert-API-key>"
+  api_key_env: OPENAI_API_KEY
+  max_tokens: 256
+  temperature: 0.0
+  timeout_seconds: 60.0
+
+outputs:
+  run_name: train_100_openai
+  prediction_path: reports/test_results/train_100_openai/predictions.json
+  evaluation_dir: reports/test_results/train_100_openai
+  evaluate: true
+
+runtime:
+  continue_on_error: true
+  # Stop immediately on OpenAI auth, billing, quota, or rate-limit errors.
+  abort_on_provider_error: true

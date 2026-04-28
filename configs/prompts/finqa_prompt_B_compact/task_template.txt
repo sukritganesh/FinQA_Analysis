@@ -1,0 +1,9 @@
+Below is the data you should use to answer the question:
+
+Question:
+{question}
+
+Selected evidence:
+{evidence_context}
+
+Output one line only.

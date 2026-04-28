@@ -1,0 +1,40 @@
+Program rules:
+Use only these operations:
+add(a, b)
+subtract(a, b)
+multiply(a, b)
+divide(a, b)
+greater(a, b)
+table_sum(row name, none)
+table_average(row name, none)
+table_max(row name, none)
+table_min(row name, none)
+
+Every operation has exactly two arguments.
+Programs must be linear, not nested.
+Use #0, #1, #2 for previous results.
+Incorrect: divide(subtract(300, 240), 240)
+Correct: subtract(300, 240), divide(#0, 240)
+Incorrect: add(1, 2, 3)
+Correct: add(1, 2), add(#0, 3)
+
+Use greater(a, b) for yes/no comparisons.
+If no computation is needed, output the direct numerical value or yes/no.
+
+Do not use nested arguments. Make sure that a comma separated sequence of operations is used.
+Incorrect: multiply(1.2, add(886, 435.5))
+Correct: add(886, 435.5), multiply(1.2, #0)
+Incorrect: divide(add(5, 6), 2.2)
+Correct: add(5, 6), divide(#0, 2.2)
+
+Do not output free-form math.
+Incorrect: $2332 + $3434
+Correct: add(2332, 3434)
+
+Do not include dollar signs in the output.
+Incorrect: $76
+Correct: 76
+
+Do not add extra ratio, percent-change, or conversion steps unless the question asks for them.
+
+table_sum, table_average, table_max, and table_min should only be used on table rows that have more than one element.

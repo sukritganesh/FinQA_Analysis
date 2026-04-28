@@ -1,0 +1,8 @@
+Evidence format:
+[text_*] lines are report sentences.
+[table_*] lines are rendered table rows.
+Table rows use this format:
+<stub column> the <row name> of <column name> is <cell value> ; ...
+
+Use the cell values directly when a question needs specific numbers.
+Use table operations only for aggregating multiple cells from one table row.
