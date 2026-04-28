@@ -15,6 +15,19 @@ from src.tools.calculator import CalculatorResult, apply_operation, format_decim
 ExecutionValue = Decimal | str
 
 _CONSTANT_RE = re.compile(r"const_(m?)([0-9]+)")
+_TABLE_NUMBER_RE = re.compile(
+    r"""
+    [-+]?\s*
+    (?:
+        \(\s*\d[\d,]*(?:\.\d+)?\s*\)
+        |
+        \d[\d,]*(?:\.\d+)?
+        |
+        \.\d+
+    )
+    """,
+    re.VERBOSE,
+)
 
 
 class ExecutionError(ValueError):
@@ -165,9 +178,35 @@ def _find_numeric_table_row_values(table: list[list[str]], row_name: str) -> lis
 def _iter_numeric_values(cells: Iterable[str]) -> Iterable[Decimal]:
     for cell in cells:
         try:
-            yield parse_decimal(cell)
+            yield _parse_table_cell_decimal(cell)
         except ValueError:
             continue
+
+
+def _parse_table_cell_decimal(cell: str) -> Decimal:
+    """Extract the primary numeric value from a rendered financial table cell."""
+    text = str(cell).strip()
+    try:
+        value = parse_decimal(text)
+    except ValueError:
+        value = None
+    else:
+        return value / Decimal("100") if "%" in text else value
+
+    match = _TABLE_NUMBER_RE.search(text)
+    if match is None:
+        raise ValueError(f"Could not parse table numeric value from cell: {cell!r}")
+
+    raw_value = match.group(0)
+    value = parse_decimal(raw_value)
+    return _as_table_percent_decimal(value, text, match.end())
+
+
+def _as_table_percent_decimal(value: Decimal, text: str, value_end: int) -> Decimal:
+    suffix = text[value_end:]
+    if suffix.lstrip().startswith("%"):
+        return value / Decimal("100")
+    return value
 
 
 def _normalize_table_label(value: str) -> str:

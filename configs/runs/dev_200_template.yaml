@@ -1,7 +1,7 @@
 data:
-  input_path: data/processed/train_100.json
+  input_path: data/processed/dev_200.json
   offset: 0
-  limit: 100
+  limit: 200
 
 retrieval:
   strategy: bm25
@@ -11,7 +11,7 @@ retrieval:
   top_k_table: 3
 
 prompt:
-  prompt_dir: configs/prompts/finqa_prompt_B_compact
+  prompt_dir: configs/prompts/finqa_prompt_refinement
 
 model:
   model: qwen14b-awq
@@ -21,9 +21,9 @@ model:
   timeout_seconds: 60.0
 
 outputs:
-  run_name: train_100_qwen14b_awq
-  prediction_path: reports/test_results/train_100_qwen14b_awq/predictions.json
-  evaluation_dir: reports/test_results/train_100_qwen14b_awq
+  run_name: dev_200_B
+  prediction_path: reports/test_results/dev_200_tests/dev_200_B/predictions.json
+  evaluation_dir: reports/test_results/dev_200_tests/dev_200_B
   evaluate: true
 
 runtime:

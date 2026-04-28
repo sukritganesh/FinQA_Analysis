@@ -1,17 +1,5 @@
-# End-to-end FinQA pipeline run over a deterministic random train sample.
-#
-# Sample source:
-#   data/processed/train_100.json
-#
-# Before running, manually serve the model with vLLM, for example:
-#   source .finqa-vllm-env/bin/activate
-#   vllm serve Qwen/Qwen2.5-14B-Instruct-AWQ --max-model-len 4096
-#
-# Run from the repository root:
-#   .venv/bin/python scripts/run_pipeline.py configs/runs/train_100_qwen14b_awq.yaml
-
 data:
-  input_path: data/raw/train.json
+  input_path: data/raw/dev.json
   offset: 0
   # limit: 1000
 
@@ -23,7 +11,7 @@ retrieval:
   top_k_table: 3
 
 prompt:
-  prompt_dir: configs/prompts/finqa_prompt_A
+  prompt_dir: configs/prompts/finqa_prompt_refinement
 
 model:
   model: qwen14b-awq
@@ -33,9 +21,9 @@ model:
   timeout_seconds: 60.0
 
 outputs:
-  run_name: train_all_qwen14b_awq_A
-  prediction_path: reports/test_results/train_all_qwen14b_awq_A/predictions.json
-  evaluation_dir: reports/test_results/train_all_qwen14b_awq_A
+  run_name: dev_all_qwen14b_awq_refinement_A
+  prediction_path: reports/test_results/refinement/dev_all_qwen14b_awq_refinement_A/predictions.json
+  evaluation_dir: reports/test_results/refinement/dev_all_qwen14b_awq_refinement_A
   evaluate: true
 
 runtime:

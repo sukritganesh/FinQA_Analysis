@@ -100,6 +100,44 @@ def test_execute_table_average_max_min_chain() -> None:
     assert result.final_answer == "0.1"
 
 
+def test_execute_table_average_extracts_percent_from_repeated_financial_cell() -> None:
+    table = [
+        ["Metric", "2005", "2004", "2003"],
+        ["effective tax rate", "26% ( 26 % )", "28% ( 28 % )", "26% ( 26 % )"],
+    ]
+    parsed = parse_reasoning_output("table_average(effective tax rate, none)")
+
+    result = execute_parsed_output(parsed, table=table)
+
+    assert result.step_results[0].result == Decimal("0.2666666666666666666666666667")
+    assert result.final_answer.startswith("0.266666")
+
+
+def test_execute_table_average_treats_plain_percent_cells_as_rates() -> None:
+    table = [
+        ["Metric", "2005", "2004", "2003"],
+        ["effective tax rate", "26%", "28%", "26%"],
+    ]
+    parsed = parse_reasoning_output("table_average(effective tax rate, none)")
+
+    result = execute_parsed_output(parsed, table=table)
+
+    assert result.step_results[0].result == Decimal("0.2666666666666666666666666667")
+
+
+def test_execute_table_min_extracts_signed_value_from_repeated_financial_cell() -> None:
+    table = [
+        ["Metric", "2005", "2004", "2003"],
+        ["research and development credit net", "-26 ( 26 )", "-5 ( 5 )", "-7 ( 7 )"],
+    ]
+    parsed = parse_reasoning_output("table_min(research and development credit net, none)")
+
+    result = execute_parsed_output(parsed, table=table)
+
+    assert result.step_results[0].result == Decimal("-26")
+    assert result.final_answer == "-26"
+
+
 def test_execute_table_operation_requires_table() -> None:
     parsed = parse_reasoning_output("table_sum(total obligations, none)")
 
