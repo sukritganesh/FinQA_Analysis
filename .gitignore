@@ -39,8 +39,6 @@ Thumbs.db
 .idea/
 
 # Local data artifacts
-data/raw/
-data/processed/
 data/cache/
 outputs/
 
