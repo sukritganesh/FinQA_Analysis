@@ -9,8 +9,9 @@ Current variants:
 - `finqa_prompt_B_compact`: shorter instruction set with three compact examples, designed to reduce prompt load and test whether less instruction text improves local model focus.
 
 The prompt is split into small files so we can edit instructions without digging through Python code.
+Each prompt folder can include a `prompt.yaml` manifest that controls which text files are composed and in what order.
 
-Suggested assembly order:
+Default assembly order when no manifest is present:
 
 1. `system.txt`
 2. `evidence_instructions.txt`
@@ -18,12 +19,36 @@ Suggested assembly order:
 4. `few_shot_examples.txt`
 5. `task_template.txt`
 
-Prompt text files are treated as optional by the Python loader. Missing files are skipped, which makes it easier to experiment with smaller prompt variants.
+Example manifest:
+
+```yaml
+sections:
+  - system.txt
+  - evidence_instructions.txt
+  - operation_guide.txt
+  - few_shot_examples.txt
+  - task_template.txt
+```
+
+You can use any filenames and any number of files:
+
+```yaml
+sections:
+  - file: intro.txt
+    name: intro
+  - file: examples/short_examples.txt
+    name: examples
+  - task.txt
+```
+
+If `prompt.yaml` is present, every listed file must exist. If no manifest is present, the default files are treated as optional and missing files are skipped.
 
 The Python prompt builder should inject:
 
 - `{question}`
 - `{evidence_context}`
+
+Those two placeholders must appear somewhere in the composed prompt.
 
 The expected model output is exactly one line:
 

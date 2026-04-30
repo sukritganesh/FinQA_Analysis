@@ -1,0 +1,6 @@
+sections:
+  - system.txt
+  - evidence_instructions.txt
+  - operation_guide.txt
+  - few_shot_examples.txt
+  - task_template.txt

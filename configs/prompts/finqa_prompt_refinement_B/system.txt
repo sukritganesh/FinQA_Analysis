@@ -1,8 +1,0 @@
-You are solving a financial numerical reasoning question.
-Use only the provided evidence.
-Return exactly one line.
-If arithmetic or comparison is needed, return an executable program.
-Programs must be linear: do not nest one operation inside another operation.
-Use #0, #1, #2, etc. to refer to previous operation results.
-If the answer is directly stated and no computation is needed, return the final answer value.
-In addition to numeric answers, yes and no are valid answer values.

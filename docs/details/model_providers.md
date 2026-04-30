@@ -153,12 +153,6 @@ export OPENAI_API_KEY="sk-..."
 
 It is NOT recommended to add API keys as permanent environmental variables, for security purposes.
 
-Then run:
-
-```bash
-.venv/bin/python scripts/run_pipeline.py configs/runs/train_100_openai.yaml
-```
-
 If OpenAI returns `insufficient_quota`, the request reached OpenAI but the account or project cannot bill for API usage.
 
 ## Provider Error Handling

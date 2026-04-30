@@ -37,13 +37,17 @@ Sections can be added or removed.
 
 ## Prompt Assets
 
-Prompt wording lives outside Python source code. A prompt directory can contain files such as:
+Prompt wording lives outside Python source code. A prompt directory can contain any number of text files plus an optional `prompt.yaml` manifest that controls composition order.
+
+The current prompt folders use:
 
 - `system.txt`
 - `evidence_instructions.txt`
 - `operation_guide.txt`
 - `few_shot_examples.txt`
 - `task_template.txt`
+
+Custom prompt folders can use different filenames as long as the composed prompt includes `{question}` and `{evidence_context}`.
 
 Two existing prompt variants are provided. `finqa_prompt_A` is fuller. `finqa_prompt_B_compact` is shorter and useful for smaller context windows.
 

@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from src.data.evidence import build_evidence_units
 from src.data.loader import load_finqa_examples
 from src.data.schemas import EvidenceUnit
@@ -121,6 +123,44 @@ def test_load_prompt_assets_skips_missing_optional_files(tmp_path: Path) -> None
     assert assets.operation_guide == ""
     assert assets.few_shot_examples == ""
     assert "What is revenue?" in prompt
+
+
+def test_load_prompt_assets_uses_manifest_order_and_custom_filenames(tmp_path: Path) -> None:
+    (tmp_path / "intro.txt").write_text("Intro section.", encoding="utf-8")
+    (tmp_path / "task.txt").write_text("Question: {question}", encoding="utf-8")
+    (tmp_path / "context.txt").write_text("Evidence:\n{evidence_context}", encoding="utf-8")
+    (tmp_path / "prompt.yaml").write_text(
+        "\n".join(
+            [
+                "sections:",
+                "  - file: task.txt",
+                "    name: task",
+                "  - intro.txt",
+                "  - file: context.txt",
+                "    name: context",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    assets = load_prompt_assets(tmp_path)
+    prompt = assemble_reasoning_prompt(
+        question="What is revenue?",
+        evidence_context="[text_0] Revenue was 10.",
+        assets=assets,
+    )
+
+    assert [section.name for section in assets.sections] == ["task", "intro", "context"]
+    assert prompt.index("Question: What is revenue?") < prompt.index("Intro section.")
+    assert prompt.index("Intro section.") < prompt.index("Evidence:")
+
+
+def test_load_prompt_assets_requires_question_and_evidence_variables(tmp_path: Path) -> None:
+    (tmp_path / "only_question.txt").write_text("Question: {question}", encoding="utf-8")
+    (tmp_path / "prompt.yaml").write_text("sections:\n  - only_question.txt\n", encoding="utf-8")
+
+    with pytest.raises(ValueError, match="evidence_context"):
+        load_prompt_assets(tmp_path)
 
 
 def test_langchain_reasoning_prompt_matches_plain_python_builder() -> None:
