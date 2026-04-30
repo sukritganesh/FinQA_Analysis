@@ -17,8 +17,11 @@ DEFAULT_OPENAI_MODEL = "gpt-4.1-mini"
 
 MODEL_ALIASES = {
     "qwen3b": "Qwen/Qwen2.5-3B-Instruct",
+    "qwen7b": "Qwen/Qwen2.5-7B-Instruct",
     "qwen7b-awq": "Qwen/Qwen2.5-7B-Instruct-AWQ",
     "qwen14b-awq": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+    "teichai-qwen3-4b-opus": "TeichAI/Qwen3-4B-Instruct-2507-Claude-Opus-3-Distill",
+    "gemma-4-e2b-it": "google/gemma-4-E2B-it",
     "deepseek-qwen1.5b": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
     "deepseek-qwen7b": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
     "deepseek-qwen14b": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",

@@ -61,8 +61,11 @@ Aliases are resolved before requests are sent. They are convenience names for co
 | Alias | Model id |
 | --- | --- |
 | `qwen3b` | `Qwen/Qwen2.5-3B-Instruct` |
+| `qwen7b` | `Qwen/Qwen2.5-7B-Instruct` |
 | `qwen7b-awq` | `Qwen/Qwen2.5-7B-Instruct-AWQ` |
 | `qwen14b-awq` | `Qwen/Qwen2.5-14B-Instruct-AWQ` |
+| `teichai-qwen3-4b-opus` | `TeichAI/Qwen3-4B-Instruct-2507-Claude-Opus-3-Distill` |
+| `gemma-4-e2b-it` | `google/gemma-4-E2B-it` |
 | `deepseek-qwen1.5b` | `deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B` |
 | `deepseek-qwen7b` | `deepseek-ai/DeepSeek-R1-Distill-Qwen-7B` |
 | `deepseek-qwen14b` | `deepseek-ai/DeepSeek-R1-Distill-Qwen-14B` |
@@ -99,6 +102,12 @@ Qwen instruct:
 vllm serve Qwen/Qwen2.5-3B-Instruct --max-model-len 4096
 ```
 
+7B non-AWQ:
+
+```bash
+vllm serve Qwen/Qwen2.5-7B-Instruct --max-model-len 4096
+```
+
 7B AWQ:
 
 ```bash
@@ -109,6 +118,18 @@ vllm serve Qwen/Qwen2.5-7B-Instruct-AWQ --max-model-len 4096
 
 ```bash
 vllm serve Qwen/Qwen2.5-14B-Instruct-AWQ --max-model-len 4096
+```
+
+TeichAI Qwen3 4B distilled model:
+
+```bash
+vllm serve TeichAI/Qwen3-4B-Instruct-2507-Claude-Opus-3-Distill --max-model-len 4096
+```
+
+Gemma instruction model:
+
+```bash
+vllm serve google/gemma-4-E2B-it --max-model-len 4096
 ```
 
 DeepSeek distilled Qwen:

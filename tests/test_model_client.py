@@ -40,10 +40,28 @@ def test_model_config_resolves_known_aliases() -> None:
     assert config.resolved_model == MODEL_ALIASES["qwen14b-awq"]
 
 
+def test_model_config_resolves_qwen_7b_non_awq_alias() -> None:
+    config = ModelConfig(model="qwen7b")
+
+    assert config.resolved_model == "Qwen/Qwen2.5-7B-Instruct"
+
+
 def test_model_config_resolves_deepseek_qwen_1_5b_alias() -> None:
     config = ModelConfig(model="deepseek-qwen1.5b")
 
     assert config.resolved_model == "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+
+
+def test_model_config_resolves_teichai_qwen3_4b_opus_alias() -> None:
+    config = ModelConfig(model="teichai-qwen3-4b-opus")
+
+    assert config.resolved_model == "TeichAI/Qwen3-4B-Instruct-2507-Claude-Opus-3-Distill"
+
+
+def test_model_config_resolves_gemma_4_e2b_it_alias() -> None:
+    config = ModelConfig(model="gemma-4-e2b-it")
+
+    assert config.resolved_model == "google/gemma-4-E2B-it"
 
 
 def test_vllm_client_posts_prompt_and_returns_assistant_text() -> None:
