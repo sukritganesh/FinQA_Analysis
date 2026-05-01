@@ -113,7 +113,11 @@ Inspect examples:
 Evaluate retrieval only:
 
 ```bash
-.venv/bin/python scripts/evaluate_retrieval.py --input data/raw/test.json --limit 100 --mode by_source --top-k-text 3 --top-k-table 3 --include-hits --log-path reports/retrieval/retrieval_eval_test_100_by_source_3_3_with_hits.md
+.venv/bin/python scripts/evaluate_retrieval.py --input data/raw/test.json --limit 500 --mode by_source --top-k-text 2 --top-k-table 2 --include-hits --log-path reports/retrieval/temp.md
+```
+
+```bash
+.venv/bin/python scripts/evaluate_retrieval.py --input data/raw/test.json --limit 500 --mode combined --top-k 4 --include-hits --log-path reports/retrieval/temp.md
 ```
 
 Preview a prompt:
@@ -144,3 +148,5 @@ Stage notes:
 - [08. Evaluation](docs/stages/08_evaluation.md)
 - [09. Workflow And Integration](docs/stages/09_workflow_and_integration.md)
 - [10. Report And Presentation](docs/stages/10_report_and_presentation.md)
+
+Report Link: https://docs.google.com/document/d/1nS2KV_JDHidcrF6-hhYq19ApiBlz-i7AObWpBxy5CvU/edit?usp=sharing
